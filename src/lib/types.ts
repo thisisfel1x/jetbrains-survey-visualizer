@@ -24,6 +24,7 @@ interface CategoriesApiResponse {
 interface DifficultyData {
     name: string
     count: number
+    [key: string]: any;
 }
 
 interface TriviaApiResponse {

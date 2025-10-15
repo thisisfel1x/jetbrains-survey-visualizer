@@ -50,8 +50,7 @@ export default function TriviaVisualizationChart() {
         setLoading(true)
         setError(null)
         try {
-            const amountToFetch = count
-            const {categories, questions, error: apiError} = await fetchTriviaData(amountToFetch)
+            const {categories, questions, error: apiError} = await fetchTriviaData(count)
 
             if (apiError) {
                 setError(apiError)
