@@ -271,7 +271,7 @@ export default function TriviaVisualizationChart() {
                                     >
                                         <div className="flex-1 min-w-0">
                                             <div className="flex items-center justify-between gap-2 mb-1">
-                                                <span className="text-sm font-medium truncate">{name}</span>
+                                                <span className="text-sm font-medium truncate">{name.replace(/&amp;/g, '&')}</span>
                                                 <div className="flex items-center gap-2 shrink-0">
                                                     <span className="text-xs text-muted-foreground">{percentage}%</span>
                                                     <Badge variant="secondary"
