@@ -166,7 +166,7 @@ export default function TriviaVisualizationChart() {
                         </div>
                         <div className="flex items-center gap-3">
                             <Button onClick={() => loadData()} variant="outline" size="icon" disabled={isLoading}>
-                                <RefreshCw className={`h-4 w-4 ${isLoading ? "animate-spin" : ""}`} />
+                                <RefreshCw className={`h-4 w-4 ${isLoading ? "animate-spin" : ""}`}/>
                             </Button>
                         </div>
                     </div>
@@ -272,7 +272,8 @@ export default function TriviaVisualizationChart() {
                                     >
                                         <div className="flex-1 min-w-0">
                                             <div className="flex items-center justify-between gap-2 mb-1">
-                                                <span className="text-sm font-medium truncate">{name.replace(/&amp;/g, '&')}</span>
+                                                <span
+                                                    className="text-sm font-medium truncate">{name.replace(/&amp;/g, '&')}</span>
                                                 <div className="flex items-center gap-2 shrink-0">
                                                     <span className="text-xs text-muted-foreground">{percentage}%</span>
                                                     <Badge variant="secondary"
