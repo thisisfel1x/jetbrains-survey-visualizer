@@ -261,7 +261,7 @@ export default function TriviaVisualizationChart() {
                         <CardDescription>Question distribution across categories</CardDescription>
                     </CardHeader>
                     <CardContent>
-                        <div className="space-y-3">
+                        <div className="grid grid-cols-2 gap-4 space-y-3">
                             {categoryData.map(({name, count}) => {
                                 const percentage = ((count / filteredQuestions.length) * 100).toFixed(1)
                                 return (
