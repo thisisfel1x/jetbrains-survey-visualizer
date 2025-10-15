@@ -10,6 +10,8 @@ import {RefreshCw} from "lucide-react";
 import {EmptyState} from "@/components/empty-state";
 import {CategoryChart} from "@/app/(components)/category-chart";
 import {DifficultyChart} from "@/app/(components)/difficulty-chart";
+import Image from "next/image";
+import jetbrainsAcademy from "@/public/images/jetbrains-academy.png";
 
 export default function TriviaVisualizationChart() {
 
@@ -23,9 +25,6 @@ export default function TriviaVisualizationChart() {
     // Category management
     const [categories, setCategories] = useState<TriviaCategory[]>([])
     const [selectedCategory, setSelectedCategory] = useState<string | null>(null)
-
-    // Make it possible to select the amount of questions to load
-    const [questionCount, setQuestionCount] = useState<number>(50)
 
     // Error Handling
     const [error, setError] = useState<ApiError | null>(null)
@@ -47,7 +46,7 @@ export default function TriviaVisualizationChart() {
         setLoading(true)
         setError(null)
         try {
-            const amountToFetch = count || questionCount
+            const amountToFetch = count
             const {categories, questions, error: apiError} = await fetchTriviaData(amountToFetch)
 
             if (apiError) {
@@ -67,13 +66,6 @@ export default function TriviaVisualizationChart() {
         } finally {
             setLoading(false)
         }
-    }
-
-    // TODO docs
-    const handleQuestionCountChange = (value: string) => {
-        const count = Number.parseInt(value)
-        setQuestionCount(count)
-        loadData(count)
     }
 
     const getCategoryData = (): CategoryData[] => {
@@ -147,25 +139,22 @@ export default function TriviaVisualizationChart() {
                 <div className="space-y-2">
                     <div className="flex items-start justify-between gap-4 flex-wrap">
                         <div className="space-y-2">
-                            <h1 className="text-4xl font-bold tracking-tight text-balance">OpenTrivia Database
-                                Analytics</h1>
+                            <div className="flex items-center gap-4">
+                                <div className="relative w-full flex-shrink-0">
+                                    <Image
+                                        src={jetbrainsAcademy}
+                                        alt="Logo"
+                                        width={500}
+                                    />
+                                </div>
+                            </div>
                             <p className="text-muted-foreground text-lg">
                                 Visualizing questions from OpenTriviaDB for JetBrains Internship Challenge
                             </p>
                         </div>
                         <div className="flex items-center gap-3">
-                            {/*<Select value={questionCount.toString()} onValueChange={handleQuestionCountChange}>*/}
-                            {/*    <SelectTrigger className="w-[140px]">*/}
-                            {/*        <SelectValue placeholder="Questions" />*/}
-                            {/*    </SelectTrigger>*/}
-                            {/*    <SelectContent>*/}
-                            {/*        <SelectItem value="10">10 questions</SelectItem>*/}
-                            {/*        <SelectItem value="20">20 questions</SelectItem>*/}
-                            {/*        <SelectItem value="50">50 questions</SelectItem>*/}
-                            {/*    </SelectContent>*/}
-                            {/*</Select>*/}
                             <Button onClick={() => loadData()} variant="outline" size="icon" disabled={isLoading}>
-                                <RefreshCw className={`h-4 w-4 ${isLoading ? "animate-spin" : ""}`}/>
+                                <RefreshCw className={`h-4 w-4 ${isLoading ? "animate-spin" : ""}`} />
                             </Button>
                         </div>
                     </div>
