@@ -1,6 +1,6 @@
 "use client"
 
-import {Cell, Pie, PieChart, ResponsiveContainer, Tooltip} from "recharts"
+import {Cell, Pie, PieChart, PieLabel, ResponsiveContainer, Tooltip} from "recharts"
 import {CHART_COLORS} from "@/lib/constants";
 import {renderLabel} from "@/lib/utils";
 
@@ -18,7 +18,7 @@ export function DifficultyChart({data}: DifficultyChartProps) {
                     cx="50%"
                     cy="50%"
                     labelLine={false}
-                    label={renderLabel}
+                    label={renderLabel as unknown as PieLabel}
                     outerRadius={120}
                     dataKey="count"
                     style={{fontSize: "14px", fontWeight: 500}}

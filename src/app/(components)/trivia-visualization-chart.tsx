@@ -42,6 +42,10 @@ export default function TriviaVisualizationChart() {
         }
     }, [selectedCategory, questions])
 
+    /**
+     * Fetches trivia data from the server.
+     * @param {number} [count] - The number of questions to fetch.
+     */
     const loadData = async (count?: number) => {
         setLoading(true)
         setError(null)
@@ -68,6 +72,10 @@ export default function TriviaVisualizationChart() {
         }
     }
 
+    /**
+     * Processes the list of filtered questions to count questions per category.
+     * @returns {CategoryData[]} An array of objects with category names and their counts.
+     */
     const getCategoryData = (): CategoryData[] => {
         const categoryCount: Record<string, number> = {}
 
@@ -80,6 +88,10 @@ export default function TriviaVisualizationChart() {
             .sort((a, b) => b.count - a.count)
     }
 
+    /**
+     * Processes the list of filtered questions to count questions per difficulty.
+     * @returns {DifficultyData[]} An array of objects with difficulty levels and their counts.
+     */
     const getDifficultyData = (): DifficultyData[] => {
         const difficultyCount: Record<string, number> = {
             easy: 0,

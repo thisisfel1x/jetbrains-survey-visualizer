@@ -1,5 +1,9 @@
 import {getErrorMessage} from "@/lib/constants";
 
+/**
+ * Fetches the list of all available trivia categories and cleans their names.
+ * @returns {Promise<TriviaCategory[]>} A promise that resolves to an array of categories.
+ */
 export async function fetchCategories(): Promise<TriviaCategory[]> {
     try {
         const response = await fetch("https://opentdb.com/api_category.php");
@@ -22,7 +26,12 @@ export async function fetchCategories(): Promise<TriviaCategory[]> {
     }
 }
 
-export async function fetchQuestions(amount = 50): Promise<{ questions: TriviaQuestion[]; error?: ApiError }> {
+/**
+ * Fetches a specific number of questions from the OpenTDB API.
+ * @param {number} [amount=50] - The number of questions to fetch. Defaults to 50.
+ * @returns {Promise<{ questions: TriviaQuestion[]; error?: ApiError }>} A promise resolving to an object with questions or an error.
+ */
+export async function fetchQuestions(amount: number = 50): Promise<{ questions: TriviaQuestion[]; error?: ApiError }> {
     try {
         const response = await fetch(`https://opentdb.com/api.php?amount=${amount}`)
         const data: TriviaApiResponse = await response.json()
@@ -50,7 +59,12 @@ export async function fetchQuestions(amount = 50): Promise<{ questions: TriviaQu
     }
 }
 
-export async function fetchTriviaData(amount = 50): Promise<TriviaDataResult> {
+/**
+ * Fetches both categories and questions concurrently for efficiency.
+ * @param {number} [amount=50] - The number of questions to fetch. Defaults to 50.
+ * @returns {Promise<TriviaDataResult>} A promise resolving to an object containing all app data.
+ */
+export async function fetchTriviaData(amount: number = 50): Promise<TriviaDataResult> {
     const [categories, questionsResult] = await Promise.all([fetchCategories(), fetchQuestions(amount)])
 
     return {
