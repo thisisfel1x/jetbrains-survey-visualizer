@@ -61,7 +61,7 @@ export default function TriviaVisualizationChart() {
                 setQuestions(questions)
                 setFilteredQuestions(questions)
             }
-        } catch (error) {
+        } catch {
             setError({
                 code: -1,
                 message: "An unexpected error occurred. Please try again.",

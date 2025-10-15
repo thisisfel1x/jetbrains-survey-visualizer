@@ -9,7 +9,6 @@ interface DifficultyChartProps {
 }
 
 export function DifficultyChart({data}: DifficultyChartProps) {
-    // @ts-ignore
     return (
         <ResponsiveContainer width="100%" height={350}>
             <PieChart>
